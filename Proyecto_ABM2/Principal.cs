@@ -12,6 +12,14 @@ public partial class frmPrincipal : Form
         InitializeComponent();
     }
 
+    private void AgregarColumna(string titulo, string propiedad)
+    {
+        DataGridViewTextBoxColumn nuevaColumna = new DataGridViewTextBoxColumn();
+        nuevaColumna.HeaderText = titulo;
+        nuevaColumna.DataPropertyName = propiedad;
+        dgvLibros.Columns.Add(nuevaColumna);
+    }
+
     #region BOTÓN AGREGAR LIBRO
     private void agregarToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -31,10 +39,24 @@ public partial class frmPrincipal : Form
     #region BOTÓN MOSTRAR LISTA LIBROS
     private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        List<Libros> libro = Libros_ADO.ListarLibros();
-        dgvLibros.DataSource = libro;
+        //dgvLibros.DataSource = null;
+        dgvLibros.Columns.Clear();
+
+        List<Libros> libro = Libros_ADO.ListarLibros();       
 
         dgvLibros.AutoGenerateColumns = false;
+
+        AgregarColumna("N° Inventario", "Inventario");
+
+        AgregarColumna("Título", "Titulo");
+
+        AgregarColumna("Autor", "Autor");
+
+        AgregarColumna("Editorial", "Editorial");
+
+        AgregarColumna("Estado", "Estado");
+
+        dgvLibros.DataSource = libro;
     }
     #endregion
 
@@ -51,7 +73,22 @@ public partial class frmPrincipal : Form
     #region BOTÓN MOSTRAR LISTA USUARIOS
     private void editarToolStripMenuItem_Click(object sender, EventArgs e)
     {
+        dgvLibros.Columns.Clear();
+
         List<Usuarios> usuario = Usuarios_ADO.ListarUsuarios();
+
+        dgvLibros.AutoGenerateColumns=false;
+
+        AgregarColumna("ID", "Id");
+
+        AgregarColumna("Nombre","Nombre");
+
+        AgregarColumna("Apellido","Apellido");
+
+        AgregarColumna("DNI","Dni");
+
+        AgregarColumna("Prestamo", "Prestamo");
+
         dgvLibros.DataSource = usuario;
     }
     #endregion

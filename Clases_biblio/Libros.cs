@@ -35,6 +35,8 @@ namespace Clases_biblio
         public string Editorial { get => editorial; set => editorial = value; }
         public string Estado { get => estado; set => estado = value; }
 
+        public string InventarioTitulo => $"{Inventario} - {Titulo}";
+
 
 
         public override string ToString()
