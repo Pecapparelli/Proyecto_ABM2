@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Clases_biblio
 {
@@ -98,5 +99,42 @@ namespace Clases_biblio
         }
 
         #endregion
+
+        #region EDITAR USUARIO
+
+        public static bool EditarUsuario(Usuarios usuario)
+        {
+            bool resultado = true;
+
+            try
+            {
+                string query = "UPDATE usuario SET nombre = @nombre, apellido = @apellido, dni = @dni WHERE id = @id";
+
+                using (MySqlConnection connection = new MySqlConnection(Usuarios_ADO.connectionString))
+                {
+                    connection.Open();
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+
+                        command.Parameters.AddWithValue("@nombre", usuario.Nombre);
+                        command.Parameters.AddWithValue("@apellido", usuario.Apellido);
+                        command.Parameters.AddWithValue("@dni", usuario.Dni);
+                        command.Parameters.AddWithValue("@id", usuario.Id);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+
+            return resultado;
+        }
+
+        #endregion
+
     }
 }

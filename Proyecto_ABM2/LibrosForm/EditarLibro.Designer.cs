@@ -42,7 +42,8 @@
             // 
             // cmbLibros
             // 
-            cmbLibros.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbLibros.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmbLibros.AutoCompleteSource = AutoCompleteSource.ListItems;
             cmbLibros.FormattingEnabled = true;
             cmbLibros.Items.AddRange(new object[] { "Inventario", "Titulo" });
             cmbLibros.Location = new Point(91, 74);
@@ -126,6 +127,7 @@
             btnGuardar.TabIndex = 9;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // frmEditarLibro
             // 
@@ -143,6 +145,7 @@
             Controls.Add(lblSeleccion);
             Controls.Add(cmbLibros);
             Name = "frmEditarLibro";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "EditarLibro";
             ResumeLayout(false);
             PerformLayout();

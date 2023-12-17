@@ -108,6 +108,7 @@
             Controls.Add(lblAutor);
             Controls.Add(lblTitulo);
             Name = "frmAgregarLibro";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "AgregarLibro";
             ResumeLayout(false);
             PerformLayout();

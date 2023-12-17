@@ -11,18 +11,24 @@ namespace Clases_biblio
     {
         private string prestamo2;
         private string prestamo3;
-        private DateTime vencimiento;
+        private string vencimiento;
 
-        public Usuarios_pago(int id, string nombre, string apellido, string dni, string prestamo, string prestamo2, string prestamo3) : base(id, nombre, apellido, dni, prestamo)
+        public Usuarios_pago(int id, string nombre, string apellido, string dni, string prestamo, string prestamo2, string prestamo3, string vencimiento) : base(id, nombre, apellido, dni, prestamo)
         {
             this.Prestamo2 = prestamo2;
             this.Prestamo3 = prestamo3;
-            this.Vencimiento = new DateTime();
+            this.Vencimiento = vencimiento;
+        }
+
+        //CONSTRUCTOR REGISTRO
+        public Usuarios_pago(int id) : base(id)
+        {
+            this.Id = id;
         }
 
         public string Prestamo2 { get => prestamo2; set => prestamo2 = value; }
         public string Prestamo3 { get => prestamo3; set => prestamo3 = value; }
-        public DateTime Vencimiento { get => vencimiento; set => vencimiento = value; }
+        public string Vencimiento { get => vencimiento; set => vencimiento = value; }
 
         public override string ToString()
         {

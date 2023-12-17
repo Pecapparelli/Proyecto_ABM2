@@ -144,7 +144,7 @@ namespace Clases_biblio
             bool resultado = true;
             try
             {
-                string query = "UPDATE libro SET titulo = @titulo, autor = @autor, editorial = @editorial WHERE inventario = @inventario";
+                string query = "UPDATE libro SET titulo = @titulo, autor = @autor, editorial = @editorial, estado = @estado WHERE inventario = @inventario";
 
                 using (MySqlConnection connection = new MySqlConnection(Libros_ADO.connectionString))
                 {
@@ -156,6 +156,7 @@ namespace Clases_biblio
                         command.Parameters.AddWithValue("@titulo", libro.Titulo);
                         command.Parameters.AddWithValue("@autor", libro.Autor);
                         command.Parameters.AddWithValue("@editorial", libro.Editorial);
+                        command.Parameters.AddWithValue("@estado", libro.Estado);
                         command.Parameters.AddWithValue("@inventario", libro.Inventario);
 
                     command.ExecuteNonQuery();
@@ -167,7 +168,7 @@ namespace Clases_biblio
 
             }
 
-            return true;
+            return resultado;
         }
         #endregion
     }

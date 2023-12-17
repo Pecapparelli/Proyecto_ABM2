@@ -34,15 +34,33 @@ namespace Clases_biblio
             this.Prestamo = prestamo;
         }
 
+        //CONSTRUCTOR EDITAR USUARIO
+        public Usuarios(int id, string nombre, string apellido, string dni)
+        {
+            this.Id = id;
+            this.Nombre = nombre;
+            this.Apellido = apellido;
+            this.Dni = dni;
+        }
+
+        //CONSTURUCTOR PARA USUARIO_PAGO
+        public Usuarios(int id)
+        {
+            this.Id = id;
+        }
+
         public int Id { get => id; set => id = value; }
         public string Nombre { get => nombre; set => nombre = value; }
         public string Apellido { get => apellido; set => apellido = value; }
         public string Dni { get => dni; set => dni = value; }
         public string Prestamo { get => prestamo; set => prestamo = value; }
 
+        public string IdNombreApellido => $"{Id} - {Nombre} {Apellido}";
+
         public override string ToString()
         {
             return $"ID: {Id} Nombre: {Nombre} Apellido {Apellido} DNI: {Dni} Libro en prestamo: {Prestamo}";
         }
+
     }
 }

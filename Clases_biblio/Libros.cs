@@ -1,4 +1,7 @@
-﻿using System.ComponentModel;
+﻿using Org.BouncyCastle.Asn1.Mozilla;
+using System.ComponentModel;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace Clases_biblio
 {
@@ -29,6 +32,11 @@ namespace Clases_biblio
             this.estado = estado;
         }
 
+        //CONSTRUCTOR SERIALIZER
+       public Libros()
+        {
+        }
+
         public int Inventario { get => inventario; set => inventario = value; }
         public string Titulo { get => titulo; set => titulo = value; }
         public string Autor { get => autor; set => autor = value; }
@@ -41,7 +49,35 @@ namespace Clases_biblio
 
         public override string ToString()
         {
-            return $"N° de inventario: {Inventario} - Título: {Titulo} - Autor: {Autor} - Editorial: {Editorial} - El libro se encuenra {Estado}";
+            return $"N° {Inventario} - Título: {Titulo} - Autor: {Autor} - Editorial: {Editorial} - El libro se encuenra: {Estado}";
+        }
+
+        public static void CatalogoTxt(string directorio, string nombreArchivo, string carpeta, List<Libros> catalogo)
+        {
+            string path = directorio + carpeta + nombreArchivo;
+
+            StreamWriter sw = new StreamWriter(path, false);
+            try
+            {
+                if (!Directory.Exists(directorio))
+                {
+                    Directory.CreateDirectory(directorio);
+                }
+
+                foreach (Libros libro in catalogo)
+                {
+                    sw.WriteLine(libro);
+                }
+            }
+            catch (Exception ex) 
+            {
+                throw new Exception(ex.Message);
+            }
+            finally 
+            {
+                sw.Close();
+            }
+
         }
     }
 }
